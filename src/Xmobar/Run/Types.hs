@@ -19,6 +19,7 @@
 module Xmobar.Run.Types(runnableTypes) where
 
 import {-# SOURCE #-} Xmobar.Run.Runnable()
+import Xmobar.Plugins.ArchUpdates
 import Xmobar.Plugins.Command
 import Xmobar.Plugins.Monitors
 import Xmobar.Plugins.Date
@@ -59,6 +60,7 @@ infixr :*:
 runnableTypes :: Command :*: Monitors :*: Date :*: PipeReader :*:
                  BufferedPipeReader :*: CommandReader :*: StdinReader :*:
                  XMonadLog :*: EWMH :*: Kbd :*: Locks :*: NotmuchMail :*:
+                 ArchUpdates :*:
 #ifdef INOTIFY
                  Mail :*: MBox :*:
 #endif

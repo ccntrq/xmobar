@@ -1575,6 +1575,34 @@
       xmonad configuration (=xmonad.hs=), e.g. by using a custom
       =~/.xmonad/build= script.
 
+* Other plugins
+
+  =ArchUpdates Rate=
+
+    Same as
+
+    #+begin_src haskell
+      ArchUpdates' ("up to date",
+                    "1 update available",
+                    "? updates available") Rate
+    #+end_src
+
+  =ArchUpdates' (Zero, One, Many) Rate=
+  - Aliases to =arch=
+
+  - =Zero=: a =String= for when the system is up to date.
+  - =One=: a =String= for when only one update is available.
+  - =Many=: a =String= for when several updates are available; it must contain a =?= character as a placeholder for the number of updates.
+  - Example:
+
+      #+begin_src haskell
+        ArchUpdates' (green "up to date",
+                      yellow "1 update",
+                      yellow "? updates") 600
+                      where
+                          yellow = wrap "<fc=yellow>" "</fc>"
+                          green = wrap "<fc=green>" "</fc>"
+      #+end_src
 
 
 * Executing external commands

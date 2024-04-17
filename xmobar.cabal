@@ -149,6 +149,7 @@ library
                    Xmobar.X11.Text,
                    Xmobar.X11.Types,
                    Xmobar.X11.Window,
+                   Xmobar.Plugins.ArchUpdates,
                    Xmobar.Plugins.Command,
                    Xmobar.Plugins.BufferedPipeReader,
                    Xmobar.Plugins.CommandReader,
