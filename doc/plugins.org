@@ -1321,7 +1321,7 @@
       #+begin_src haskell
         Run UVMeter "Brisbane" ["-H", "3", "-L", "3", "--low", "green", "--high", "red"] 900
       #+end_src
-** Other monitors
+** Other monitors and plugins
 *** =CatInt n filename=
 
     - Reads and displays an integer from the file whose path is =filename=
@@ -1351,6 +1351,31 @@
       the display of those numeric fields.
     - Default template: =Up: <days>d <hours>h <minutes>m=
 
+*** =ArchUpdates' (Zero, One, Many) Rate=
+  - Aliases to =arch=
+
+  - =Zero=: a =String= for when the system is up to date.
+
+  - =One=: a =String= for when only one update is available.
+
+  - =Many=: a =String= for when several updates are available; it must contain a =?=
+    character as a placeholder for the number of updates.
+
+  - Example:
+    In a plain configuration file:
+    #+begin_src haskell
+      ArchUpdates' ("<fc=green>up to date</fc>",
+                    "<fc=yellow>1 update</fc>,
+                    "<fc=red>? updates</fc>")
+                   600
+    #+end_src
+*** =ArchUpdates Rate=
+    Same as (see above for ~ArchUpdates'~):
+    #+begin_src haskell
+      ArchUpdates' ("up to date",
+                    "1 update available",
+                    "? updates available") Rate
+    #+end_src
 * Interfacing with window managers
   :PROPERTIES:
   :CUSTOM_ID: interfacing-with-window-managers
@@ -1574,36 +1599,6 @@
       updates. It is thus necessary to enable =-threaded= when compiling
       xmonad configuration (=xmonad.hs=), e.g. by using a custom
       =~/.xmonad/build= script.
-
-* Other plugins
-
-  =ArchUpdates Rate=
-
-    Same as
-
-    #+begin_src haskell
-      ArchUpdates' ("up to date",
-                    "1 update available",
-                    "? updates available") Rate
-    #+end_src
-
-  =ArchUpdates' (Zero, One, Many) Rate=
-  - Aliases to =arch=
-
-  - =Zero=: a =String= for when the system is up to date.
-  - =One=: a =String= for when only one update is available.
-  - =Many=: a =String= for when several updates are available; it must contain a =?= character as a placeholder for the number of updates.
-  - Example:
-
-      #+begin_src haskell
-        ArchUpdates' (green "up to date",
-                      yellow "1 update",
-                      yellow "? updates") 600
-                      where
-                          yellow = wrap "<fc=yellow>" "</fc>"
-                          green = wrap "<fc=green>" "</fc>"
-      #+end_src
-
 
 * Executing external commands
 

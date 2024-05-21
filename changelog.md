@@ -1,3 +1,8 @@
+## Version 0.49 (unreleased)
+
+- New plugin: `ArchUpdates` (thanks, Enrico Maria)
+
+
 ## Version 0.48.1 (May, 2024)
 
 - Removing for now mouse support for `Kbd`, which can be recovered by
