@@ -21,19 +21,13 @@ import System.Process (readProcessWithExitCode)
 import Xmobar.Run.Exec
 import Xmobar.Plugins.Command (Rate)
 
-data ArchUpdates = ArchUpdates Rate
-                 | ArchUpdates' (String, String, String) Rate
+data ArchUpdates = ArchUpdates (String, String, String) Rate
   deriving (Read, Show)
 
 instance Exec ArchUpdates where
-    alias (ArchUpdates _) = "arch"
-    alias (ArchUpdates' _ _) = "arch"
-    rate (ArchUpdates r) = r
-    rate (ArchUpdates' _ r) = r
-    run (ArchUpdates r) = run (ArchUpdates' ("up to date",
-                                             "1 update available",
-                                             "? updates available") r)
-    run (ArchUpdates' (z, o, m) _) = do
+    alias (ArchUpdates _ _) = "arch"
+    rate (ArchUpdates _ r) = r
+    run (ArchUpdates (z, o, m) _) = do
       (exit, stdout, _) <- readProcessWithExitCode "checkupdates" [] ""
       return $ case exit of
         ExitFailure 2 -> z--ero updates

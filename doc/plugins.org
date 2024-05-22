@@ -1369,13 +1369,6 @@
                     "<fc=red>? updates</fc>")
                    600
     #+end_src
-*** =ArchUpdates Rate=
-    Same as (see above for ~ArchUpdates'~):
-    #+begin_src haskell
-      ArchUpdates' ("up to date",
-                    "1 update available",
-                    "? updates available") Rate
-    #+end_src
 * Interfacing with window managers
   :PROPERTIES:
   :CUSTOM_ID: interfacing-with-window-managers
