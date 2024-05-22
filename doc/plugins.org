@@ -1351,22 +1351,18 @@
       the display of those numeric fields.
     - Default template: =Up: <days>d <hours>h <minutes>m=
 
-*** =ArchUpdates' (Zero, One, Many) Rate=
+*** =ArchUpdates (Zero, One, Many) Rate=
+
   - Aliases to =arch=
-
-  - =Zero=: a =String= for when the system is up to date.
-
-  - =One=: a =String= for when only one update is available.
-
-  - =Many=: a =String= for when several updates are available; it must contain a =?=
-    character as a placeholder for the number of updates.
-
+  - =Zero=: a =String= to use when the system is up to date.
+  - =One=: a =String= to use when only one update is available.
+  - =Many=: a =String= to use when several updates are available; it must contain
+    a =?= character as a placeholder for the number of updates.
   - Example:
-    In a plain configuration file:
     #+begin_src haskell
-      ArchUpdates' ("<fc=green>up to date</fc>",
-                    "<fc=yellow>1 update</fc>,
-                    "<fc=red>? updates</fc>")
+      ArchUpdates ("<fc=green>up to date</fc>",
+                   "<fc=yellow>1 update</fc>,
+                   "<fc=red>? updates</fc>")
                    600
     #+end_src
 * Interfacing with window managers
