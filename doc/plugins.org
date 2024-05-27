@@ -1365,6 +1365,29 @@
                    "<fc=red>? updates</fc>")
                    600
     #+end_src
+
+*** =makeAccordion Tuning [Runnable]=
+
+  - Wraps other =Runnable= plugins and makes them all collapsible to a single string:
+
+    [[file:accordion.gif]]
+
+  - Aliases to =alias' tuning=, being =tuning= of type =Tuning=, so one can use multiple such "accordions"
+  - **Disclaimer**: This only works for Haskell =xmobar.hs=
+  - =Tuning=: the "settings", for which a default value is provided,
+    #+begin_src haskell
+      defaultTuning = Tuning {
+          alias' = "accordion"
+        , initial = True
+        , expand = "<>"
+        , shrink = "><"
+      }
+    #+end_src
+  - =expand=: =String= shown when the accordion is contracted (defaults to ="<>"=).
+  - =shrink=: =String= shown when the accordion is expanded (defaults to ="><"=).
+  - =initial=: =Bool= to tell whether the accordion is initially expanded (defaults to =True=).
+  - =[Runnable]=: a list of =Runnable= plugins
+
 * Interfacing with window managers
   :PROPERTIES:
   :CUSTOM_ID: interfacing-with-window-managers

@@ -26,6 +26,7 @@ module Xmobar (xmobar
               , SignalType (..)
               , module Xmobar.Config.Types
               , module Xmobar.Config.Parse
+              , module Xmobar.Plugins.Accordion
               , module Xmobar.Plugins.ArchUpdates
               , module Xmobar.Plugins.BufferedPipeReader
               , module Xmobar.Plugins.CommandReader
@@ -54,6 +55,7 @@ import Xmobar.Run.Runnable
 import Xmobar.Run.Exec
 import Xmobar.Config.Types
 import Xmobar.Config.Parse
+import Xmobar.Plugins.Accordion
 import Xmobar.Plugins.ArchUpdates
 import Xmobar.Plugins.Command
 import Xmobar.Plugins.BufferedPipeReader
