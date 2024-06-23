@@ -1,6 +1,6 @@
 ## Version 0.49 (unreleased)
 
-- New plugin: `ArchUpdates` (thanks, Enrico Maria)
+- New plugins: `ArchUpdates` and `Accordion` (thanks, Enrico Maria)
 
 
 ## Version 0.48.1 (May, 2024)
