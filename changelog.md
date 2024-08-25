@@ -1,7 +1,7 @@
 ## Version 0.49 (unreleased)
 
 - New plugins: `ArchUpdates` and `Accordion` (thanks, Enrico Maria)
-
+- New template variable `weatherS` for `WeatherX`.
 
 ## Version 0.48.1 (May, 2024)
 

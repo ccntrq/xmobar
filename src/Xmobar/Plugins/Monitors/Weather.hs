@@ -66,6 +66,7 @@ weatherConfig = mkMConfig
        , "skyCondition"
        , "skyConditionS"
        , "weather"
+       , "weatherS"
        , "tempC"
        , "tempF"
        , "dewPointC"
@@ -221,22 +222,24 @@ getData station = CE.catch
     errHandler :: CE.SomeException -> IO String
     errHandler _ = return "<Could not retrieve data>"
 
-formatSk :: Eq p => [(p, p)] -> p -> p
-formatSk ((a,b):sks) sk = if a == sk then b else formatSk sks sk
-formatSk [] sk = sk
+formatSk :: Eq p => [(p, p)] -> p -> p -> p
+formatSk ((a,b):sks) sk d = if a == sk then b else formatSk sks sk d
+formatSk [] _ d = d
 
 formatWeather
     :: WeatherOpts        -- ^ Formatting options from the cfg file
     -> [(String,String)]  -- ^ 'SkyConditionS' for 'WeatherX'
     -> [WeatherInfo]      -- ^ The actual weather info
     -> Monitor String
-formatWeather opts sks [WI st ss y m d h (WindInfo wc wa wm wk wkh wms) v sk we tC tF dC dF r p] =
+formatWeather opts sks
+              [WI st ss y m d h (WindInfo wc wa wm wk wkh wms) v sk we tC tF dC dF r p] =
     do cel <- showWithColors show tC
        far <- showWithColors show tF
-       let sk' = formatSk sks (map toLower sk)
+       let sk' = formatSk sks (map toLower sk) ""
            we' = showWeather (weatherString opts) we
+           we'' = formatSk sks (map toLower we') sk'
        parseTemplate [st, ss, y, m, d, h, wc, wa, wm, wk, wkh
-                     , wms, v, sk, sk', we', cel, far
+                     , wms, v, sk, sk', we', we'', cel, far
                      , show dC, show dF, show r , show p ]
 formatWeather _ _ _ = getConfigValue naString
 

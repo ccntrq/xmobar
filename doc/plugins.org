@@ -1268,9 +1268,11 @@
     - Works in the same way as =Weather=, but takes an additional argument,
       a list of pairs from sky conditions to their replacement (typically a
       unicode string or an icon specification).
-    - Use the variable =skyConditionS= to display the replacement of the
-      corresponding sky condition. All other =Weather= template variables
-      are available as well.
+    - Use the variable =skyConditionS= or =weatherS= to display the replacement of
+      the corresponding sky condition. =weatherS= uses the string returned by
+      =weather= to look up a replacement, and, if that one is not found, it
+      looks up the value of =skyConditionS=. All other =Weather= template
+      variables are available as well.
 
       For example:
 
