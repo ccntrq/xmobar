@@ -231,8 +231,8 @@ formatWeather opts sks [WI st ss y m d h wind v sk we tC tF dC dF r p] =
     do let WindInfo wc wa wm wk wkh wms = wind
        cel <- showWithColors show tC
        far <- showWithColors show tF
-       let sk' = findSk sks (map toLower sk) ""
-           we' = showWeather (weatherString opts) we
+       let we' = showWeather (weatherString opts) we
+           sk' = findSk sks (map toLower sk) we'
            we'' = findSk sks (map toLower we') sk'
        parseTemplate [st, ss, y, m, d, h, wc, wa, wm, wk, wkh
                      , wms, v, sk, sk', we', we'', cel, far
