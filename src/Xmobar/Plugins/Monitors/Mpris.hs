@@ -28,7 +28,7 @@ import qualified DBus.Client as DC
 import Control.Arrow ((***))
 import Data.Maybe ( fromJust )
 import Data.Int ( Int32, Int64 )
-import Data.Word ( Word32 )
+import Data.Word ( Word32, Word64 )
 import System.IO.Unsafe ( unsafePerformIO )
 
 import Control.Exception (try)
@@ -136,17 +136,17 @@ makeList version md = map getStr (fieldsList version) where
                              "xesam:trackNumber" -> printf "%02d" num
                              _ -> (show::Int32 -> String) num
             pw32 v = printf "%02d" (fromVar v::Word32)
-            plen str v = let num = fromVar v in
-                           case str of
+            plen str num = case str of
                              "mpris:length" -> formatTime (num `div` 1000000)
-                             _ -> (show::Int64 -> String) num
+                             _ -> show num
             getStr str = case lookup str md of
                 Nothing -> ""
                 Just v -> case variantType v of
                             TypeString -> fromVar v
                             TypeInt32 -> pInt str v
                             TypeWord32 -> pw32 v
-                            TypeInt64 -> plen str v
+                            TypeWord64 -> plen str (fromVar v :: Word64)
+                            TypeInt64 -> plen str (fromVar v :: Int64)
                             TypeArray TypeString ->
                               let x = arrayItems (fromVar v) in
                                 if null x then "" else fromVar (head x)
