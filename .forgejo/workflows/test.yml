@@ -1,23 +1,28 @@
-on: [push, pull_request]
+on:
+  pull_request:
+  branches:
+    - 'master'
+    - 'forgejo'
 
 jobs:
-  test:
+  actions:
     strategy:
       matrix:
-        GHC_VERSION:
-          - 9.6
-          - 9.4
-          - 8
+        - version: [9.6, 9.4, 8]
+
+    image: haskell:${{ matrix.version }}
+
     steps:
-      image: haskell:${{ matrix.GHC_VERSION }}
-      commands:
-        - apt-get update
-        - apt-get install -y xorg-dev libxrandr-dev libpango1.0-dev
-        - apt-get install -y libasound2-dev libxpm-dev libmpd-dev
-        - apt-get install -y hspec-discover hlint
-
-        - hlint src
-
-        - cabal update
-        - cabal test --enable-tests -fall_extensions
-        - cabal test --enable-tests -fall_extensions -f-with_xrender
+      - name: apt
+        run: |
+          apt-get update
+          apt-get install -y xorg-dev libxrandr-dev libpango1.0-dev
+          apt-get install -y libasound2-dev libxpm-dev libmpd-dev
+          apt-get install -y hspec-discover hlint
+      - name: hlint
+        run: hlint src
+      - name: cabal tests
+        run: |
+          cabal update
+          cabal test --enable-tests -fall_extensions
+          cabal test --enable-tests -fall_extensions -f-with_xrender
