@@ -60,7 +60,7 @@ writer txt sep len rate chan cb = do
         Nothing -> tenthSeconds rate >> writer (drop 1 txt) sep len rate chan cb
 
 toInfTxt :: String -> String -> String
-toInfTxt line sep = concat (repeat $ line ++ " " ++ sep ++ " ")
+toInfTxt line sep = cycle (line ++ " " ++ sep ++ " ")
 
 checkPipe :: FilePath -> IO ()
 checkPipe file = handle (\(SomeException _) -> waitForPipe) $ do

@@ -170,7 +170,7 @@ updateConfigPosition disp cfg =
 runActions :: D.Actions -> A.Button -> X11.Position -> IO ()
 runActions actions button pos =
   mapM_ A.runAction $
-   filter (\(A.Spawn b _) -> button `elem` b) $
-   concatMap (\(a,_,_) -> a) $
-   filter (\(_, from, to) -> pos' >= from && pos' <= to) actions
+   concatMap
+    (filter (\ (A.Spawn b _) -> button `elem` b) . (\ (a, _, _) -> a))
+    (filter (\ (_, from, to) -> pos' >= from && pos' <= to) actions)
   where pos' = fromIntegral pos

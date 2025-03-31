@@ -3,7 +3,7 @@
 -----------------------------------------------------------------------------
 -- |
 -- Module      :  Plugins.Monitors.Top
--- Copyright   :  (c) 2010, 2011, 2012, 2013, 2014, 2018, 2022 Jose A Ortega Ruiz
+-- Copyright   :  (c) 2010-2014, 2018, 2022, 2025 Jose A Ortega Ruiz
 -- License     :  BSD-style (see LICENSE)
 --
 -- Maintainer  :  Jose A Ortega Ruiz <jao@gnu.org>
@@ -20,7 +20,7 @@ import Xmobar.Plugins.Monitors.Common
 
 import Data.IORef (newIORef, readIORef, writeIORef)
 import Data.List (sortBy)
-import Data.Ord (comparing)
+import Data.Ord (comparing, Down (..))
 import Data.Time.Clock (getCurrentTime, diffUTCTime)
 
 import Xmobar.Plugins.Monitors.Top.Common (
@@ -66,7 +66,7 @@ showInfo nm sms mms = do
 
 
 sortTop :: [(String, Float)] -> [(String, Float)]
-sortTop =  sortBy (flip (comparing snd))
+sortTop =  sortBy (comparing (Down . snd))
 
 showMemInfo :: Float -> MemInfo -> Monitor [String]
 showMemInfo scale (nm, rss) =
