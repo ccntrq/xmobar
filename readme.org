@@ -5,9 +5,6 @@
   <a href="http://hackage.haskell.org/package/xmobar">
     <img src="https://img.shields.io/hackage/v/xmobar.svg" alt="hackage"/>
   </a>
-  <a href="https://ci.codeberg.org/repos/12773" target="_blank">
-    <img src="https://ci.codeberg.org/api/badges/12773/status.svg" alt="status-badge" />
-  </a>
 </p>
 #+end_export
 
