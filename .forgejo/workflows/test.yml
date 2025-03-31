@@ -1,22 +1,22 @@
-matrix:
-  GHC_VERSION:
-    - 9.6
-    - 9.4
-    - 8
+on: [push, pull_request]
 
-steps:
+jobs:
   test:
-    when:
-      event: [push, pull_request]
-    image: haskell:${GHC_VERSION}
-    commands:
-      - apt-get update
-      - apt-get install -y xorg-dev libxrandr-dev libpango1.0-dev
-      - apt-get install -y libasound2-dev libxpm-dev libmpd-dev
-      - apt-get install -y hspec-discover hlint
+    matrix:
+      GHC_VERSION:
+        - 9.6
+        - 9.4
+        - 8
+    steps:
+      image: haskell:${GHC_VERSION}
+      commands:
+        - apt-get update
+        - apt-get install -y xorg-dev libxrandr-dev libpango1.0-dev
+        - apt-get install -y libasound2-dev libxpm-dev libmpd-dev
+        - apt-get install -y hspec-discover hlint
 
-      - hlint src
+        - hlint src
 
-      - cabal update
-      - cabal test --enable-tests -fall_extensions
-      - cabal test --enable-tests -fall_extensions -f-with_xrender
+        - cabal update
+        - cabal test --enable-tests -fall_extensions
+        - cabal test --enable-tests -fall_extensions -f-with_xrender
