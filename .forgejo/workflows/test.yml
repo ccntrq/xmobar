@@ -1,8 +1,9 @@
 on:
   pull_request:
-  branches:
-    - 'master'
-    - 'forgejo'
+
+  push:
+    branches:
+      - 'master'
 
 jobs:
   actions:
