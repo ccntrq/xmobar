@@ -2,13 +2,14 @@ on: [push, pull_request]
 
 jobs:
   test:
-    matrix:
-      GHC_VERSION:
-        - 9.6
-        - 9.4
-        - 8
+    strategy:
+      matrix:
+        GHC_VERSION:
+          - 9.6
+          - 9.4
+          - 8
     steps:
-      image: haskell:${GHC_VERSION}
+      image: haskell:${{ matrix.GHC_VERSION }}
       commands:
         - apt-get update
         - apt-get install -y xorg-dev libxrandr-dev libpango1.0-dev
