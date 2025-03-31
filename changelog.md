@@ -2,6 +2,8 @@
 
 - New plugins: `ArchUpdates` and `Accordion` (thanks, Enrico Maria)
 - New template variable `weatherS` for `WeatherX`.
+- New Nix flake (thanks, refaelsh)
+- `MPRIS`: Fix for duration reported by Spotify (thanks, Claudio)
 
 ## Version 0.48.1 (May, 2024)
 
