@@ -1,9 +1,10 @@
-## Version 0.49 (unreleased)
+## Version 0.49 (April, 2025)
 
 - New plugins: `ArchUpdates` and `Accordion` (thanks, Enrico Maria)
 - New template variable `weatherS` for `WeatherX`.
 - New Nix flake (thanks, refaelsh)
 - `MPRIS`: Fix for duration reported by Spotify (thanks, Claudio)
+- Base dep up to 4.20 (thanks, Alexander)
 
 ## Version 0.48.1 (May, 2024)
 
