@@ -1353,19 +1353,33 @@
       the display of those numeric fields.
     - Default template: =Up: <days>d <hours>h <minutes>m=
 
-*** =ArchUpdates (Zero, One, Many) Rate=
+*** =PacmanUpdates (Zero, One, Many, Error) Rate=
 
-  - Aliases to =arch=
+  - Aliases to =pacman=
   - =Zero=: a =String= to use when the system is up to date.
   - =One=: a =String= to use when only one update is available.
   - =Many=: a =String= to use when several updates are available; it must contain
     a =?= character as a placeholder for the number of updates.
+  - =Error=: a =String= to use when pacman fails for unkown reasons (e.g.
+    network error)
   - Example:
     #+begin_src haskell
       ArchUpdates ("<fc=green>up to date</fc>",
                    "<fc=yellow>1 update</fc>,
-                   "<fc=red>? updates</fc>")
+                   "<fc=red>? updates</fc>",
+                   "<fc=red>!Pacman Error!</fc>")
                    600
+    #+end_src
+
+*** =ArchUpdates (Zero, One, Many) Rate=
+  - Aliases to =arch=
+  - Same As:
+    #+begin_src haskell
+      PacmanUpdates  (Zero,
+                      One,
+                      Many,
+                      "pacman: Unknown cause of failure.")
+                     Rate
     #+end_src
 
 *** =makeAccordion Tuning [Runnable]=
